@@ -11,16 +11,16 @@ int main(void){
 	char dPath[256] = {0,};
 	char DLLPath[264];
 	
-	printf("¿¹) ABC.dll \n"); 
-	printf("DLL ÀÎÁ§¼ÇÀÇ DLL ÀÌ¸§À» Àû¾îÁÖ¼¼¿ä. : ");
+	printf("ì˜ˆ) ABC.dll \n"); 
+	printf("DLL ì¸ì ì…˜ì˜ DLL ì´ë¦„ì„ ì ì–´ì£¼ì„¸ìš”. : ");
 	scanf("%s", dName); 
 	
 	sprintf(DLLPath, "%s\\%s", getcwd(dPath, 256), dName);
 	
 	printf("DLL Path : %s \n\n", DLLPath);
 	
-	printf("¿¹) notepad.exe \n"); 
-	printf("DLL ÀÎÁ§¼Ç ÇÒ ÇÁ·Î¼¼½º ÀÌ¸§À» Àû¾îÁÖ¼¼¿ä. : ");
+	printf("ì˜ˆ) notepad.exe \n"); 
+	printf("DLL ì¸ì ì…˜ í•  í”„ë¡œì„¸ìŠ¤ ì´ë¦„ì„ ì ì–´ì£¼ì„¸ìš”. : ");
 	scanf("%s", pName); 
 	
 	HANDLE hProcess, hMod, hThread;
@@ -35,7 +35,7 @@ int main(void){
 		do{
 			if(!_tcsicmp(pe32.szExeFile, TEXT(pName)))
 			{
-				printf("%s¸¦ Ã£¾Ò½À´Ï´Ù. \n", pName);
+				printf("%së¥¼ ì°¾ì•˜ìŠµë‹ˆë‹¤. \n", pName);
 				pid = pe32.th32ProcessID;
 				printf("%s pid : %d \n", pName, pid);
 				break;
@@ -51,12 +51,12 @@ int main(void){
 	if(!(hModAddr = (void(*))GetProcAddress((HMODULE)hMod, "LoadLibraryA")));
 	if(!(hThread = CreateRemoteThread(hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)hModAddr, DllBuf, 0, NULL)));
 	
-	printf("ÇÚµé °ª :  0x%X \n", hProcess);
-	printf("¸Ş¸ğ¸® °ø°£ : %x \n", DllBuf);
+	printf("í•¸ë“¤ ê°’ :  0x%X \n", hProcess);
+	printf("ë©”ëª¨ë¦¬ ê³µê°„ : %x \n", DllBuf);
 	printf("KERNEL32.DLL : %x \n", hMod);
 			 
 	WaitForSingleObject(hThread, INFINITE);
-	printf("½º·¹µå : %x \n", hThread);
+	printf("ìŠ¤ë ˆë“œ : %x \n", hThread);
 			
 	CloseHandle(hThread);
 	CloseHandle(hProcess);
