@@ -13,7 +13,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 	{
 		case DLL_PROCESS_ATTACH:
 		{
-			MessageBox(NULL , "안내","DLL 인젝션 성공", MB_OK);
+			HelloWorld();
 			break;
 		}
 		case DLL_PROCESS_DETACH:
